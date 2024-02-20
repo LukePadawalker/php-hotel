@@ -1,4 +1,5 @@
 <?php
+require(__DIR__ .'/hotels.php');
 
 
 
@@ -16,15 +17,17 @@
     <title>Hotel</title>
 </head>
 <body>
-    <div class="row d-flex">
 
-        <div class="col-3 d-flex justify-content-center">cioa</div>
-        <div class="col-2 d-flex justify-content-center">cioaca</div>
-        <div class="col-2 d-flex justify-content-center">caioca</div>
-        <div class="col-2 d-flex justify-content-center">icoaca</div>
-        <div class="col-3 d-flex justify-content-center">acioa</div>
+
+<?php foreach($hotels as $hotel) : ?>
+    <div class="row d-flex">
+        <div class="col-3 d-flex justify-content-center"><?php echo $hotel['name']?></div>
+        <div class="col-2 d-flex justify-content-center"><?php echo $hotel['description']?></div>
+        <div class="col-2 d-flex justify-content-center"><?php echo $hotel['parking']?></div>
+        <div class="col-2 d-flex justify-content-center"><?php echo $hotel['vote']?></div>
+        <div class="col-3 d-flex justify-content-center"><?php echo $hotel['distance_to_center']?></div>
     </div>
-    
+<?php endforeach ?>
 
 </body>
 </html>
