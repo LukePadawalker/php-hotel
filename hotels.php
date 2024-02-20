@@ -1,7 +1,5 @@
 <?php
-
     $hotels = [
-
         [
             'name' => 'Hotel Belvedere',
             'description' => 'Hotel Belvedere Descrizione',
@@ -37,7 +35,5 @@
             'vote' => 2,
             'distance_to_center' => 50
         ],
-
     ];
-
 ?>

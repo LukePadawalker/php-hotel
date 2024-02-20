@@ -2,8 +2,13 @@
 require(__DIR__ .'/hotels.php');
 
 
-
-
+if (isset($_GET['parking_filter'])) {
+    $filteredHotels = array_filter($hotels, function ($hotel) {
+        return isset($hotel['parking']) && $hotel['parking'] === true;
+    });
+} else {
+    $filteredHotels = $hotels;
+}
 
 ?>
 
@@ -18,9 +23,22 @@ require(__DIR__ .'/hotels.php');
 </head>
 <body>
 
+<form method="get">
+    <label for="parking_filter">Mostra solo hotel con parcheggio</label>
+    <input type="checkbox" name="parking_filter" <?php if (isset($_GET['parking_filter'])) echo 'checked'; ?>>
+    <button class="btn btn-primary" type="submit">Filtra</button>
+</form>
+<div class="row p-4">
+    
+        <div class="col-3 d-flex justify-content-center h4">Nome hotel</div>
+        <div class="col-2 d-flex justify-content-center h4">Descrizione</div>
+        <div class="col-2 d-flex justify-content-center h4">Parcheggio</div>
+        <div class="col-2 d-flex justify-content-center h4">Voto</div>
+        <div class="col-3 d-flex justify-content-center h4">Distanza dal centro</div>
 
-<?php foreach($hotels as $hotel) : ?>
-    <div class="row d-flex">
+</div>
+<?php foreach($filteredHotels as $hotel) : ?>
+    <div class="row ps-4 pe-4">
         <div class="col-3 d-flex justify-content-center"><?php echo $hotel['name']?></div>
         <div class="col-2 d-flex justify-content-center"><?php echo $hotel['description']?></div>
         <div class="col-2 d-flex justify-content-center"><?php echo $hotel['parking']?></div>
